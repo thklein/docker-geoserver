@@ -27,7 +27,7 @@ Docker containers run in an isolated environment, so in order to persist data an
 First, ensure that your directory is accessibale by docker, then:
 
 ```bash
-$ docker run --name "geoserver" -d -v $HOME/geoserver_data:/geoserver_data -p 8080:8080 thklein/geoserver
+$ docker run --name "geoserver" -d -v $HOME/geoserver_data:/geoserver_data -p 8080:8080 geoserver
 ```
 
 This makes it easier to upgrade or to take a backup.
