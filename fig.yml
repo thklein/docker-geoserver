@@ -1,0 +1,15 @@
+geoserver:
+  image: thklein/geoserver
+  links:
+    - postgis
+  ports:
+    - "8080:8080"
+  volumes:
+    - ./docker_volumes/geoserver_data:/geoserver_data
+
+postgis:
+  image: kartoza/postgis
+  ports:
+    - "25432:5432"
+  volumes:
+    - ./docker_volumes/postgis_data:/var/lib/postgresql

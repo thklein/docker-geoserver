@@ -59,3 +59,15 @@ $ docker run --name "postgis" -v $HOME/postgres_data:/var/lib/postgresql
 
 The default username and password for the database is both `docker`.
 For further information see [kartooza/postgis](https://registry.hub.docker.com/u/kartoza/postgis/).
+
+### Fig
+
+To run GeoServer and a PostGIS database in one step you can use [fig](www.fig.sh). Fig allows us to define and control a multi-container service with a simple yaml file. The `fig.yml` file in this repo contains the definition to run GeoServer and a PostGIS database. All you have to do is to clone the `thklein/docker-geoserver` repo and run fig.
+
+```bash
+$ git clone https://github.com/thklein/docker-geoserver.git
+$ cd docker-geoserver
+$ fig up
+```
+
+Fig will do the magic and starts the database and GeoServer container. The volumes of these containers will be generated in the `docker_volumes` directory within the docker-geoserver directory. 
