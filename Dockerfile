@@ -1,18 +1,23 @@
 FROM consol/tomcat-8.0
 MAINTAINER Thomas Klein <github.com/thklein>
 
-ENV GEOSERVER_VERSION 2.6.0
-ENV GEOSERVER_DATA_DIR /geoserver_data
+#
+# Set GeoServer version and data directory 
+#
+ENV GEOSERVER_VERSION=2.6.0 \
+    GEOSERVER_DATA_DIR="/geoserver_data"
 
-RUN wget -q http://sourceforge.net/projects/geoserver/files/GeoServer/$GEOSERVER_VERSION/geoserver-$GEOSERVER_VERSION-war.zip -O /tmp/geoserver.zip
 
 RUN apt-get update && apt-get -y install unzip
 
-RUN unzip -q /tmp/geoserver.zip -d /tmp
-
-RUN mv /tmp/geoserver.war /opt/tomcat/webapps/geoserver.war
-
-RUN mkdir $GEOSERVER_DATA_DIR
+#
+# Download and install GeoServer
+#
+RUN cd /opt/tomcat/webapps \
+    && wget --progress=bar:force:noscroll http://sourceforge.net/projects/geoserver/files/GeoServer/$GEOSERVER_VERSION/geoserver-$GEOSERVER_VERSION-war.zip \
+    && unzip -q geoserver-$GEOSERVER_VERSION-war.zip \
+    && rm geoserver-$GEOSERVER_VERSION-war.zip \
+    && mkdir $GEOSERVER_DATA_DIR
 
 VOLUME $GEOSERVER_DATA_DIR
 
