@@ -5,11 +5,11 @@ geoserver:
   ports:
     - "8080:8080"
   volumes:
-    - ./docker_volumes/geoserver_data:/geoserver_data
+    - /srv/docker/geoserver/geoserver:/geoserver_data
 
 postgis:
   image: kartoza/postgis
   ports:
     - "25432:5432"
   volumes:
-    - ./docker_volumes/postgis_data:/var/lib/postgresql
+    - /srv/docker/geoserver/postgis:/var/lib/postgresql
